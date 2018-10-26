@@ -13,12 +13,12 @@ public class AlligatorTester
     // here, I am using each of the 4 defined constructors
     Animal a1 = new Alligator(); // default constuctor
     Animal a2 = new Alligator(getRandomBetween(40,45)); // using constructor that takes int for age w/ generated numb
-    Animal a3 = new Alligator(10,"BabyGator"); // using constructor with age and name
+    Animal a3 = new Alligator(1,"BabyGator"); // using constructor with age and name
     Animal a4 = new Alligator(100, "LongLivingGator", new String[]{"deer","fish","birds","boaters"}); // using ALL params
 
     @Test
     public void testDefaultGator(){
-        assertEquals(75,a1.getAge());// should return default age
+        assertEquals(10,a1.getAge());// should return default age
         assertEquals("Alligator" ,a1.getName());// should return default name
         assertEquals("buffalo", a1.getFavoriteFoods().get(0));// should return default menu
     }
@@ -31,7 +31,7 @@ public class AlligatorTester
     }
     @Test
     public void testGatorConstr3(){
-        assertEquals(10,a3.getAge());// should return provided age
+        assertEquals(1,a3.getAge());// should return provided age
         assertEquals("BabyGator" ,a3.getName());// should return provided name
         assertEquals("buffalo", a3.getFavoriteFoods().get(0));// should return default menu
     }
