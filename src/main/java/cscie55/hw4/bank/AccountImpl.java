@@ -34,6 +34,18 @@ public class AccountImpl implements Account {
 
     @Override
     public void withdraw(long amount) throws InsufficientFundsException {
+        if(amount <= 0){
+            throw new IllegalArgumentException("Cannot be a zero or negative value");
+        }
+        else {
+            if(this.myBalance - amount >= 0) {
+                this.myBalance = this.myBalance - amount;
+            }
+            else {
+                throw new InsufficientFundsException(this, amount);
+            }
+
+        }
 
     }
 
