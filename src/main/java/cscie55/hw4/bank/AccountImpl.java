@@ -23,6 +23,12 @@ public class AccountImpl implements Account {
 
     @Override
     public void deposit(long amount) {
+        if(amount <= 0){
+            throw new IllegalArgumentException("Cannot be a zero or negative value");
+        }
+        else {
+            this.myBalance = this.myBalance + amount;
+        }
 
     }
 
