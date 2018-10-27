@@ -5,13 +5,20 @@ import java.util.Map;
 
 public class BankImpl implements Bank {
 
-    public BankImpl() {
-        HashMap<Integer, Account> bankMap = new HashMap<>();
-    }
+    HashMap<Integer, Account> bankMap = new HashMap<>();
+
+//    public BankImpl() {
+//
+//    }
 
     @Override
     public void addAccount(Account account) throws DuplicateAccountException {
-
+        if(bankMap.containsKey(account.getId())) {
+            throw new DuplicateAccountException(account.getId());
+        }
+        else {
+            bankMap.put(account.getId(), account);
+        }
     }
 
     @Override
