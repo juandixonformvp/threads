@@ -1,6 +1,13 @@
 package cscie55.hw4.bank;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class BankImpl implements Bank {
+
+    public BankImpl() {
+        HashMap<Integer, Account> bankMap = new HashMap<>();
+    }
 
     @Override
     public void addAccount(Account account) throws DuplicateAccountException {
