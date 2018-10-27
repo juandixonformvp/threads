@@ -13,11 +13,11 @@ public class BankImpl implements Bank {
 
     @Override
     public void addAccount(Account account) throws DuplicateAccountException {
-        if(bankMap.containsKey(account.getId())) {
+        if(this.bankMap.containsKey(account.getId())) {
             throw new DuplicateAccountException(account.getId());
         }
         else {
-            bankMap.put(account.getId(), account);
+            this.bankMap.put(account.getId(), account);
         }
     }
 
@@ -38,12 +38,16 @@ public class BankImpl implements Bank {
 
     @Override
     public long getTotalBalances() {
-
+        long sum = 0;
+        for (Account a : this.bankMap.values()) {
+            sum += a.getBalance();
+        }
+        return sum;
     }
 
     @Override
     public int  getNumberOfAccounts() {
-
+        return this.bankMap.size();
     }
 
 }

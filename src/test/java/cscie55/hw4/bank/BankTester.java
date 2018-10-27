@@ -130,23 +130,26 @@ public class BankTester
         }
     }
 
-//    @Test
-//    public void testDuplicateAccounts()
-//    {
-//        Bank bank = new BankImpl();
-//        Account account = new AccountImpl(0);
-//        try {
-//            bank.addAccount(account);
-//        } catch (DuplicateAccountException e) {
-//            fail();
-//        }
-//        try {
-//            bank.addAccount(account);
-//            fail();
-//        } catch (DuplicateAccountException e) {
-//            // Expected
-//        }
-//    }
+    @Test
+    public void testDuplicateAccounts()
+    {
+        Bank bank = new BankImpl();
+        Account account = new AccountImpl(0);
+        try {
+            bank.addAccount(account);
+        } catch (DuplicateAccountException e) {
+            fail();
+        }
+        try {
+            bank.addAccount(account);
+            fail();
+        } catch (DuplicateAccountException e) {
+            // Expected
+        }
+    }
+
+
+
 //
 //    @Test
 //    public void testPerformance() throws InterruptedException, DuplicateAccountException
