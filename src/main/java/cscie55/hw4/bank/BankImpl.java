@@ -23,17 +23,31 @@ public class BankImpl implements Bank {
 
     @Override
     public void transferWithoutLocking(int fromId, int toId, long amount) throws InsufficientFundsException {
-
+        this.bankMap.get(fromId).withdraw(amount);
+        this.bankMap.get(toId).deposit(amount);
     }
 
     @Override
     public void transferLockingBank(int fromId, int toId, long amount) throws InsufficientFundsException {
+        synchronized (this) {
+            this.bankMap.get(fromId).withdraw(amount);
+            this.bankMap.get(toId).deposit(amount);
+        }
 
     }
 
     @Override
     public void transferLockingAccounts(int fromId, int toId, long amount) throws InsufficientFundsException {
+        Account fromAcct = this.bankMap.get(fromId);
+        Account toAcct = this.bankMap.get(toId);
 
+        synchronized (fromAcct) {
+            fromAcct.withdraw(amount);
+        }
+
+        synchronized (toAcct) {
+            toAcct.withdraw(amount);
+        }
     }
 
     @Override
