@@ -160,37 +160,37 @@ public class BankTester
         // before timings start.
         warmup();
         // Try each locking strategy
-//        for (LockStrategy lockStrategy : LockStrategy.values()) {
-//            Bank bank = createBank();
-//            // Try various numbers of threads
-//            for (int nThreads : THREADS) {
-//                // Create the test threads
-//                TestThread[] threads = new TestThread[nThreads];
-//                for (int t = 0; t < nThreads; t++) {
-//                    threads[t] = new TestThread(bank, lockStrategy, TRANSACTIONS / nThreads, t);
-//                }
-//                // Start the test threads
-//                Stopwatch stopwatch = new Stopwatch();
-//                for (TestThread thread : threads) {
-//                    thread.start();
-//                }
-//                // Wait for the threads to complete
-//                for (TestThread thread : threads) {
-//                    thread.join();
-//                }
-//                stopwatch.stop();
-//                // Report time measurements
-//                long nSec = stopwatch.nSec();
-//                double transactionsPerMsec = (1000000.0 * TRANSACTIONS) / nSec;
-//                if (bank.getTotalBalances() == ACCOUNTS * INITIAL_BALANCE) {
-//                    System.out.format("%s, %s -- OK: %f transactions/msec\n",
-//                                      lockStrategy, nThreads, transactionsPerMsec);
-//                } else {
-//                    System.out.format("%s, %s -- BROKEN: %f transactions/msec\tExpected total balances: %d\tActual: %d\n",
-//                                      lockStrategy, nThreads, transactionsPerMsec, ACCOUNTS * INITIAL_BALANCE, bank.getTotalBalances());
-//                }
-//            }
-//        }
+        for (LockStrategy lockStrategy : LockStrategy.values()) {
+            Bank bank = createBank();
+            // Try various numbers of threads
+            for (int nThreads : THREADS) {
+                // Create the test threads
+                TestThread[] threads = new TestThread[nThreads];
+                for (int t = 0; t < nThreads; t++) {
+                    threads[t] = new TestThread(bank, lockStrategy, TRANSACTIONS / nThreads, t);
+                }
+                // Start the test threads
+                Stopwatch stopwatch = new Stopwatch();
+                for (TestThread thread : threads) {
+                    thread.start();
+                }
+                // Wait for the threads to complete
+                for (TestThread thread : threads) {
+                    thread.join();
+                }
+                stopwatch.stop();
+                // Report time measurements
+                long nSec = stopwatch.nSec();
+                double transactionsPerMsec = (1000000.0 * TRANSACTIONS) / nSec;
+                if (bank.getTotalBalances() == ACCOUNTS * INITIAL_BALANCE) {
+                    System.out.format("%s, %s -- OK: %f transactions/msec\n",
+                                      lockStrategy, nThreads, transactionsPerMsec);
+                } else {
+                    System.out.format("%s, %s -- BROKEN: %f transactions/msec\tExpected total balances: %d\tActual: %d\n",
+                                      lockStrategy, nThreads, transactionsPerMsec, ACCOUNTS * INITIAL_BALANCE, bank.getTotalBalances());
+                }
+            }
+        }
     }
 
     private Bank createBank() throws DuplicateAccountException
