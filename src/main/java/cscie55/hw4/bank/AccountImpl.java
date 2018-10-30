@@ -21,6 +21,10 @@ public class AccountImpl implements Account {
         return this.myBalance;
     }
 
+    /**
+     * Adds a deposit to the balance, checks if positive amount
+     * @param amount
+     */
     @Override
     public void deposit(long amount) {
         if(amount <= 0){
@@ -32,6 +36,11 @@ public class AccountImpl implements Account {
 
     }
 
+    /**
+     * Subtracts withdrawal from balance, checks if positive amount
+     * @param amount
+     * @throws InsufficientFundsException
+     */
     @Override
     public void withdraw(long amount) throws InsufficientFundsException {
         if(amount <= 0){
